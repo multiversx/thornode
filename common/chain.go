@@ -26,6 +26,7 @@ const (
 	TERRAChain = Chain("TERRA")
 	GAIAChain  = Chain("GAIA")
 	AVAXChain  = Chain("AVAX")
+	MVXChain   = Chain("MVX")
 
 	SigningAlgoSecp256k1 = SigningAlgo("secp256k1")
 	SigningAlgoEd25519   = SigningAlgo("ed25519")

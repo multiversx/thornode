@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/rs/zerolog/log"
+	"gitlab.com/thorchain/thornode/bifrost/pkg/chainclients/multiversx"
 	"gitlab.com/thorchain/tss/go-tss/tss"
 
 	"gitlab.com/thorchain/thornode/bifrost/metrics"
@@ -49,6 +50,8 @@ func LoadChains(thorKeys *thorclient.Keys,
 			return gaia.NewCosmosClient(thorKeys, chain, server, thorchainBridge, m)
 		case common.BTCChain, common.BCHChain, common.LTCChain, common.DOGEChain:
 			return utxo.NewClient(thorKeys, chain, server, thorchainBridge, m)
+		case common.MVXChain:
+			return multiversx.NewClient()
 		default:
 			log.Fatal().Msgf("chain %s is not supported", chain.ChainID)
 			return nil, nil
