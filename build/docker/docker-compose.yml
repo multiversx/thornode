@@ -487,3 +487,19 @@ services:
       - 9650:9650
     environment:
       RPC_PORT: "9650"
+
+  # ------------------------------ multiversx ------------------------------
+
+  multiversx:
+    profiles:
+      - mocknet
+      - mocknet-cluster
+    image: multiversx/chainsimulator:latest
+    restart: unless-stopped
+    environment:
+      BLOCK_TIME: ${BLOCK_TIME:-5}
+    ports:
+      - 18085:8085
+    volumes:
+      - "../scripts:/docker/scripts"
+    entrypoint: "./chainsimulator --log-level *:DEBUG --log-save --auto-generate-blocks true"
