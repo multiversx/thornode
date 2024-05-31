@@ -26,8 +26,15 @@ type KeyData struct {
 	addrDOGE KeyDataAddr
 }
 
+type KeyDataEd25519 struct {
+	priv    string
+	pub     string
+	addrMVX KeyDataAddr
+}
+
 type PubKeyTestSuite struct {
-	keyData []KeyData
+	keyData        []KeyData
+	keyDataEd25519 []KeyDataEd25519
 }
 
 var _ = Suite(&PubKeyTestSuite{})
@@ -172,6 +179,49 @@ func (s *PubKeyTestSuite) SetUpSuite(_ *C) {
 			addrDOGE: KeyDataAddr{
 				mainnet: "DJbKker23xfz3ufxAbqUuQwp1EBibGJJHu",
 				mocknet: "mtyBWSzMZaCxJ1xy9apJBZzXz648BZrpJg",
+			},
+		},
+	}
+
+	s.keyDataEd25519 = []KeyDataEd25519{
+		{
+			priv: "ef235aacf90d9f4aadd8c92e4b2562e1d9eb97f0df9ba3b508258739cb013db2",
+			pub:  "bca2c6f573270fba58116fa51263d8c00c0ba92f1c44abe2d107e1814fc650fb",
+			addrMVX: KeyDataAddr{
+				mainnet: "erd1hj3vdatnyu8m5kq3d7j3yc7ccqxqh2f0r3z2hck3qlsczn7x2ras0qhx0h",
+				mocknet: "erd1hj3vdatnyu8m5kq3d7j3yc7ccqxqh2f0r3z2hck3qlsczn7x2ras0qhx0h",
+			},
+		},
+		{
+			priv: "289c2857d4598e37fb9647507e47a309d6133539bf21a8b9cb6df88fd5232032",
+			pub:  "e0dd6abc7b5c6403e34f85145717410d6fe7386b5b2f811efbe2dc27d35aad26",
+			addrMVX: KeyDataAddr{
+				mainnet: "erd1urwk40rmt3jq8c60s529w96pp4h7wwrttvhcz8hmutwz056645nqw83cud",
+				mocknet: "erd1urwk40rmt3jq8c60s529w96pp4h7wwrttvhcz8hmutwz056645nqw83cud",
+			},
+		},
+		{
+			priv: "e810f1d7d6691b4a7a73476f3543bd87d601f9a53e7faf670eac2c5b517d83bf",
+			pub:  "2ecc5264040570334f9d85933511ed1eb87716c19431e16a6d18b5803744eb8a",
+			addrMVX: KeyDataAddr{
+				mainnet: "erd19mx9yeqyq4crxnuaskfn2y0dr6u8w9kpjsc7z6ndrz6cqd6yaw9qjqgyfr",
+				mocknet: "erd19mx9yeqyq4crxnuaskfn2y0dr6u8w9kpjsc7z6ndrz6cqd6yaw9qjqgyfr",
+			},
+		},
+		{
+			priv: "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330",
+			pub:  "a52d39cf0fcb8e9fd431788c7731731400500b7f3c011463f8d55d3ffd8aeba1",
+			addrMVX: KeyDataAddr{
+				mainnet: "erd155knnnc0ew8fl4p30zx8wvtnzsq9qzml8sq3gclc64wnllv2awssln25pz",
+				mocknet: "erd155knnnc0ew8fl4p30zx8wvtnzsq9qzml8sq3gclc64wnllv2awssln25pz",
+			},
+		},
+		{
+			priv: "9294f4d108465fd293f7fe299e6923ef71a77f2cb1eb6d4394839c64ec25d5c0",
+			pub:  "e703c11917cc28c1badffa7e2358bd9cb7838c06030a54ef69bcdd70f97bfe4b",
+			addrMVX: KeyDataAddr{
+				mainnet: "erd1uupuzxghes5vrwkllflzxk9anjmc8rqxqv99fmmfhnwhp7tmle9stndrpg",
+				mocknet: "erd1uupuzxghes5vrwkllflzxk9anjmc8rqxqv99fmmfhnwhp7tmle9stndrpg",
 			},
 		},
 	}

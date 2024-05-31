@@ -75,7 +75,7 @@ func (s *MultiversXSuite) SetUpTest(c *C) {
 			c.Assert(err, IsNil)
 			var pubKeysVault openapi.VaultPubkeysResponse
 			c.Assert(json.Unmarshal(content, &pubKeysVault), IsNil)
-			chain := common.ETHChain.String()
+			chain := common.MVXChain.String()
 			router := "0xE65e9d372F8cAcc7b6dfcd4af6507851Ed31bb44"
 			pubKeysVault.Asgard = append(pubKeysVault.Asgard, openapi.VaultInfo{
 				PubKey: pk.String(),

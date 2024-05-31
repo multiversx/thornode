@@ -57,3 +57,28 @@ func (s *PubKeyTestSuite) TestPubKeyGetAddress(c *C) {
 		c.Assert(addrDOGE.String(), Equals, d.addrDOGE.mocknet)
 	}
 }
+
+func (s *PubKeyTestSuite) TestPubKeyGetAddressForEd25519(c *C) {
+	for _, d := range s.keyDataEd25519 {
+		privB, _ := hex.DecodeString(d.priv)
+		pubB, _ := hex.DecodeString(d.pub)
+		priv := ed25519.PrivKey(xed25519.NewKeyFromSeed(privB))
+		pubKey := priv.PubKey()
+		pubT, _ := pubKey.(ed25519.PubKey)
+		pub := pubT[:]
+
+		c.Assert(hex.EncodeToString(pub), Equals, hex.EncodeToString(pubB))
+
+		tmp, err := codec.FromTmPubKeyInterface(pubKey)
+		c.Assert(err, IsNil)
+		pubBech32, err := cosmos.Bech32ifyPubKey(cosmos.Bech32PubKeyTypeAccPub, tmp)
+		c.Assert(err, IsNil)
+
+		pk, err := NewPubKey(pubBech32)
+		c.Assert(err, IsNil)
+
+		addrMVX, err := pk.GetAddress(MVXChain)
+		c.Assert(err, IsNil)
+		c.Assert(addrMVX.String(), Equals, d.addrMVX.mocknet)
+	}
+}
