@@ -1,13 +1,13 @@
 package common
 
 import (
-	"encoding/json"
-	"fmt"
-	"os"
-	"strings"
+  "encoding/json"
+  "fmt"
+  "github.com/gogo/protobuf/jsonpb"
+  "os"
+  "strings"
 
-	"github.com/blang/semver"
-	"github.com/gogo/protobuf/jsonpb"
+  "github.com/blang/semver"
 )
 
 var (
@@ -43,6 +43,7 @@ var (
 	RuneERC20MocknetAsset = Asset{Chain: ETHChain, Symbol: "RUNE-0xd601c6A3a36721320573885A8d8420746dA3d7A0", Ticker: "RUNE", Synth: false}
 	TOR                   = Asset{Chain: THORChain, Symbol: "TOR", Ticker: "TOR", Synth: false}
 	THORBTC               = Asset{Chain: THORChain, Symbol: "BTC", Ticker: "BTC", Synth: false}
+	MVXAsset              = Asset{Chain: MVXChain, Symbol: "MVX", Ticker: "MVX", Synth: false}
 )
 
 // NewAsset parse the given input into Asset object

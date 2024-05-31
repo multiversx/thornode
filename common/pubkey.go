@@ -16,6 +16,7 @@ import (
 	"github.com/eager7/dogutil"
 	ltcchaincfg "github.com/ltcsuite/ltcd/chaincfg"
 	"github.com/ltcsuite/ltcutil"
+	"gitlab.com/thorchain/thornode/mvxSupport"
 
 	bchchaincfg "github.com/gcash/bchd/chaincfg"
 	"github.com/gcash/bchutil"
@@ -194,6 +195,17 @@ func (pubKey PubKey) GetAddress(chain Chain) (Address, error) {
 			return NoAddress, fmt.Errorf("fail to encode the address, err: %w", err)
 		}
 		addressString = addr.String()
+	case MVXChain:
+		pk, err := cosmos.GetPubKeyFromBech32(cosmos.Bech32PubKeyTypeAccPub, string(pubKey))
+		if err != nil {
+			return NoAddress, err
+		}
+
+		addressString, err = mvxSupport.EncodeBytesToMvXAddress(pk.Bytes())
+		if err != nil {
+			return NoAddress, fmt.Errorf("fail to encode the address, err: %w", err)
+		}
+
 	default:
 		// Only EVM chains remain.
 		if !chain.IsEVM() {
